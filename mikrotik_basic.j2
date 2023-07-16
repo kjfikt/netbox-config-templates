@@ -21,7 +21,7 @@
 
 
 
-{% for interface in device.interfaces.all() | selectattr('type', 'bridge') %}
+{% for interface in device.interfaces.all() if interface.type == 'bridge' %}
     interface {{ interface }} {{ interface.type }}
     {% for ip in interface.ip_addresses.all() %}
     ip address {{ ip.address  }}
