@@ -10,7 +10,7 @@
 /system routerboard settings set auto-upgrade=yes
 /snmp set enabled=yes
 /ip route add gateway=$gateway
-/ip dns set servers="{{dns_servers}}"
+/ip dns set servers={{dns_servers}}
 
 
 :log info ("### Basic device configuration END");
