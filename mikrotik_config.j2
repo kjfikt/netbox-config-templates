@@ -1,5 +1,8 @@
 {
+    {% filter indent(width=4) %}
     {% include 'mikrotik_basic.j2' %}
+    {% endfilter %}
+    
     {% block content %}
         system {
             host-name {{ device.name }};
