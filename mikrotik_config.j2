@@ -3,18 +3,7 @@
     {% include 'mikrotik_basic.j2' %}
     {%- endfilter %}
     
-    {% block content %}
-        system {
-            host-name {{ device.name }};
-            domain-name example.com;
-            time-zone UTC;
-            authentication-order [ password radius ];
-            ntp {
-                {%- for server in dns_servers %}
-                    server {{ server }};
-                {%- endfor %}
-            }
-        }
+
     {% for interface in device.interfaces.all() %}
     {{ interface }} --> working: print interface name
     {{ interface.enabled }} --> working: print interface enabled value
@@ -28,5 +17,4 @@
 
     {{ device.device_type.id}}
     {{ device.device_type.manufacturer}}
-    {% endblock %}
 }
