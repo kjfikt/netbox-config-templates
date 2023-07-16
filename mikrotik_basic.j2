@@ -22,7 +22,7 @@
 
 
 {% set bridge = device.interfaces.all() | selectattr('type','equalto','bridge2') | list | first  %}
-{% if bridge is None %}
+{% if bridge is none %}
     blank
 {% endif%}
 bridge: {{bridge}}
