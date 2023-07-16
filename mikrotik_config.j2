@@ -1,28 +1,29 @@
-# Test
-{% include 'mikrotik_basic.j2' %}
-{% block content %}
-    system {
-        host-name {{ device.name }};
-        domain-name example.com;
-        time-zone UTC;
-        authentication-order [ password radius ];
-        ntp {
-            {%- for server in dns_servers %}
-                server {{ server }};
-            {%- endfor %}
+{
+    {% include 'mikrotik_basic.j2' %}
+    {% block content %}
+        system {
+            host-name {{ device.name }};
+            domain-name example.com;
+            time-zone UTC;
+            authentication-order [ password radius ];
+            ntp {
+                {%- for server in dns_servers %}
+                    server {{ server }};
+                {%- endfor %}
+            }
         }
-    }
-{% for interface in device.interfaces.all() %}
-{{ interface }} --> working: print interface name
-{{ interface.enabled }} --> working: print interface enabled value
-{% endfor %}
+    {% for interface in device.interfaces.all() %}
+    {{ interface }} --> working: print interface name
+    {{ interface.enabled }} --> working: print interface enabled value
+    {% endfor %}
 
-{% for cf in device.cf %}
-{{ cf }}: {{ device.cf[cf] }}
-{% endfor %}
+    {% for cf in device.cf %}
+    {{ cf }}: {{ device.cf[cf] }}
+    {% endfor %}
 
-{{ device.cf.firmware_version }}
+    {{ device.cf.firmware_version }}
 
-{{ device.device_type.id}}
-{{ device.device_type.manufacturer}}
-{% endblock %}
+    {{ device.device_type.id}}
+    {{ device.device_type.manufacturer}}
+    {% endblock %}
+}
