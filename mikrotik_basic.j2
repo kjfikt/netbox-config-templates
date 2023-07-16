@@ -22,7 +22,7 @@
 
 
 {% for interface in device.interfaces.all() %}
-interface {{ interface }}
+interface {{ interface }} {{ interface.type }}
 {% for ip in interface.ip_addresses.all() %}
   ip address {{ ip.address  }}
 {% endfor %}
