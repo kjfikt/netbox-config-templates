@@ -20,11 +20,18 @@
 :log info ("### Basic device configuration END");
 
 
-{{device.interfaces.all() | first}}
-{% for interface in device.interfaces.all() %}
-interface {{ interface }} {{ interface.type }}
-{% for ip in interface.ip_addresses.all() %}
-  ip address {{ ip.address  }}
+
+{% for interface in device.interfaces.all() | selectattr('type', 'bridge') %}
+    interface {{ interface }} {{ interface.type }}
+    {% for ip in interface.ip_addresses.all() %}
+    ip address {{ ip.address  }}
+    {% endfor %}
 {% endfor %}
 
+
+{% for interface in device.interfaces.all() %}
+    interface {{ interface }} {{ interface.type }}
+    {% for ip in interface.ip_addresses.all() %}
+    ip address {{ ip.address  }}
+    {% endfor %}
 {% endfor %}
