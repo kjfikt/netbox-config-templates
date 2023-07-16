@@ -1,6 +1,10 @@
 ### Basic device configuration
 :log info ("### Basic device configuration START");
 
+:local deviceIp 10.242.178.11
+:local networkId ($deviceIp&255.255.255.0)
+:local gateway ($networkId|0.0.0.1)
+
 
 /user/add name="{{device_username}}" password="{{device_password}}" group=full
 /user/remove admin
@@ -14,3 +18,13 @@
 
 
 :log info ("### Basic device configuration END");
+
+
+
+{% for interface in device.interfaces.all() %}
+interface {{ interface }}
+{% for ip in interface.ip_addresses.all() %}
+  ip address {{ ip.address  }}
+{% endfor %}
+
+{% endfor %}
