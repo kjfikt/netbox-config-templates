@@ -22,7 +22,7 @@
 
 
 {% set bridge = device.interfaces.all() | selectattr('type','equalto','bridge')  %}
-length: {{ bridge.length()}}
+length: {{ bridge.length}}
 
 {% for interface in device.interfaces.all() if interface.type == 'bridge' %}
     interface {{ interface }} {{ interface.type }}
