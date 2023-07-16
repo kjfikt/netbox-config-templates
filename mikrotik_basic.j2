@@ -20,7 +20,7 @@
 :log info ("### Basic device configuration END");
 
 
-{{device | pprint}}
+{{device | list}}
 {% set bridge = device.interfaces.all() | selectattr('type','equalto','bridge2') | list | first  %}
 {% if bridge is none %}
     blank
