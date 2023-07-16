@@ -25,7 +25,7 @@
 {% if bridge is not defined %}
     blank
 {% endif%}
-bridge: {{bridge}}
+bridge IP: {{(bridge.ip_addresses.all() | first).address}}
 
 {% for interface in device.interfaces.all() if interface.type == 'bridge' %}
     interface {{ interface }} {{ interface.type }}
