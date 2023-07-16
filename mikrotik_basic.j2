@@ -20,7 +20,7 @@
 :log info ("### Basic device configuration END");
 
 
-
+{{device.interfaces}}
 {% for interface in device.interfaces.all() %}
 interface {{ interface }} {{ interface.type }}
 {% for ip in interface.ip_addresses.all() %}
