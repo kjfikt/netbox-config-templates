@@ -1,3 +1,16 @@
-# Basic config
-:log info ("### Basic config");
-:local identity "{{ device.name }}"
+### Basic device configuration
+:log info ("### Basic device configuration START");
+
+
+/user/add name="{{device_username}}" password="{{device_password}}" group=full
+/user/remove admin
+/system identity set name="{{ device.name }}"
+/system/ntp/client/ set servers=pool.ntp.org enabled=yes
+/system clock set time-zone-name=Europe/Oslo
+/system routerboard settings set auto-upgrade=yes
+/snmp set enabled=yes
+/ip route add gateway=$gateway
+/ip dns set servers="{{dns_servers}}"
+
+
+:log info ("### Basic device configuration END");
