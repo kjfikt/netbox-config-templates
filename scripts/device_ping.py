@@ -1,3 +1,5 @@
+
+
 from django.utils.text import slugify
 
 from dcim.choices import *
@@ -30,8 +32,7 @@ class DevicePing(Script):
 
     def run(self, data, commit):
         now = datetime.datetime.now()
-        device = 
-        
+        device = Device.objects.get(serial=data['device'])
         device.custom_field_data["firmware_version"] = data["firmware_version"]
         device.custom_field_data["ping_timestamp"] = f"{now.date()}"
         device.custom_field_data["ping_clock"] = now.time()
