@@ -12,17 +12,17 @@ from extras.scripts import *
 import datetime
 
 
-class DevicePing(Script):
+class DeviceDown(Script):
     #optional variables in UI here!
     device_sn = StringVar(
         description="Serial number for device to update"
     )
 
     class Meta:
-        name = "Device up"
-        description = "Device is rigged up"
+        name = "Device down"
+        description = "Device is rigged down"
 
     def run(self, data, commit):
         device = Device.objects.get(serial=data['device_sn'])
-        device.status = 'active'
+        device.status = 'offline'
         device.save()
