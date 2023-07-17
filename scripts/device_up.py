@@ -12,7 +12,7 @@ from extras.scripts import *
 import datetime
 
 
-class DevicePing(Script):
+class DeviceUp(Script):
     #optional variables in UI here!
     device_sn = StringVar(
         description="Serial number for device to update"
